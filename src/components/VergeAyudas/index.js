@@ -50,7 +50,7 @@ const IconButton = styled.div`
   height: 3.5rem;
   border-radius: 50%;
   background-color: ${(props) =>
-    props.active ? "rgba(0,0,0,0.9)" : "rgba(0,0,0,0.5)"};
+    props.active ? "rgba(8, 167, 255, 0.8)" : "rgba(0,0,0,0.5)"};
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
@@ -61,13 +61,13 @@ const IconButton = styled.div`
 
   &:hover {
     background-color: ${(props) =>
-    props.disabled ? "rgba(0,0,0,0.5)" : "rgba(0,0,0,0.7)"};
+    props.disabled ? "rgba(0,0,0,0.5)" : "rgba(8, 167, 255, 0.8)"};
     transform: ${(props) => (props.disabled ? "none" : "scale(1.1)")};
   }
 
   &:active {
     background-color: ${(props) =>
-    props.disabled ? "rgba(0,0,0,0.5)" : "rgba(0,0,0,0.7)"};
+    props.disabled ? "rgba(0,0,0,0.5)" : "rgba(8, 167, 255, 0.8)"};
     transform: ${(props) => (props.disabled ? "none" : "scale(0.9)")};
   }
 
@@ -125,14 +125,14 @@ const IconButtons = () => {
   const [activeButton, setActiveButton] = useState(null);
   const [buttonsEnabled, setButtonsEnabled] = useState([
     true,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
   ]);
-  const [firstClick, setFirstClick] = useState(false); // Nueva variable para controlar el parpadeo
+  // const [firstClick, setFirstClick] = useState(false); // Nueva variable para controlar el parpadeo
 
   // Carga los sonidos
   const { play: playMenuOpenSound } = useSound("/sounds/menu-open.mp3");
@@ -191,24 +191,24 @@ const IconButtons = () => {
       setActiveButton(buttonIndex);
 
       // Habilita los otros botones si el primer botón fue presionado
-      if (buttonIndex === 0 && !firstClick) {
-        setButtonsEnabled([true, true, true, true, true, true, true]);
-        setFirstClick(true); // Desactiva el parpadeo
-      }
+      // if (buttonIndex === 0 && !firstClick) {
+      //   setButtonsEnabled([true, true, true, true, true, true, true]);
+      //   setFirstClick(true); // Desactiva el parpadeo
+      // }
     }, tiempo);
   };
 
   // Efecto inicial para ocultar todos los contenidos y parpadear el primer botón
-  useEffect(() => {
-    document.querySelectorAll(".content").forEach((element) => {
-      element.style.display = "flex";
-      element.style.transition = "opacity 0.5s ease-in-out";
-      element.style.opacity = 0;
-      setTimeout(() => {
-        element.style.display = "none";
-      }, 500);
-    });
-  }, []);
+  // useEffect(() => {
+  //   document.querySelectorAll(".content").forEach((element) => {
+  //     element.style.display = "flex";
+  //     element.style.transition = "opacity 0.5s ease-in-out";
+  //     element.style.opacity = 0;
+  //     setTimeout(() => {
+  //       element.style.display = "none";
+  //     }, 500);
+  //   });
+  // }, []);
 
   return (
     <ButtonContainer id="ayudas">
@@ -219,7 +219,7 @@ const IconButtons = () => {
         </Description>
         <IconButton
           active={activeButton === 0}
-          blinking={!firstClick && buttonsEnabled[0]}
+          // blinking={!firstClick && buttonsEnabled[0]}
           onMouseEnter={handleMouseEnter}
           onClick={() => handleButtonClick(0, "content1")}
           disabled={!buttonsEnabled[0]}

@@ -61,7 +61,7 @@ const Menu = ({ items, menuIconImage }) => {
         <MenuDescription show={showDescription}>
         <p className='en'>Zn Regrind Mill</p><p className='es'>Filtro de Concentrado de Zinc</p>
         </MenuDescription>
-        <Ayuda className="content content1" style={{ zIndex: 30 }}><p className='en'>Menu</p><p className='es'>Menu</p></Ayuda>
+        <Ayuda className="content content1" style={{ zIndex: 30, display: "none" }}><p className='en'>Menu</p><p className='es'>Menu</p></Ayuda>
       </MenuIcon>
       <MenuItems open={open}>
         {items.map((item, index) => (
